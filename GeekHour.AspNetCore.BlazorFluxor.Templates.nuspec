@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>GeekHour.Template.NetCoreTool.nuspec</id>
+    <id>GeekHour.AspNetCore.BlazorFluxor.Templates</id>
     <version>1.0.1</version>
     <description>
-      Project template for creating a .NET Core tool.
+      Project templates Blazor and Fluxor.
     </description>
     <authors>Geek Hour</authors>
-    <license type="expression">Apache-2.0</license>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/GeekyHours/BlazorFluxorTemplates</projectUrl>
+    <repository type="git" url="https://github.com/GeekyHours/BlazorFluxorTemplates" branch="main"/>
+    <tags>Blazor Fluxor Server WebAssembly Template</tags>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
