@@ -2,7 +2,7 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Geek Hour",
     "classifications": [ "Web", "Blazor", "Fluxor" ],
-    "identity": "GeekHour.Web.BlazorFluxor.CSharp.6.0",
+    "identity": "GeekHour.Web.BlazorFluxorServer.CSharp.6.0",
     "name": "Blazor Fluxor Server Application",
     "shortName": "blazorfluxorserver",
     "tags": {
