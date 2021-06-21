@@ -1,0 +1,58 @@
+﻿@page "/fetchdata"
+
+@using Fluxor
+@using BlazorFluxorServer.Data
+@using BlazorFluxorServer.Store.FetchDataUseCase
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<FetchDataState> _fetchDataState
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (_fetchDataState.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if(_fetchDataState.Value.Forecasts == null)
+    {
+        <p><em>@_fetchDataState.Value.Error</em></p>
+    }
+    else
+    {
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Temp. (C)</th>
+                  <th>Temp. (F)</th>
+                  <th>Summary</th>
+              </tr>
+          </thead>
+          <tbody>
+              @foreach (var forecast in _fetchDataState.Value.Forecasts)
+              {
+                  <tr>
+                      <td>@forecast.Date.ToShortDateString()</td>
+                      <td>@forecast.TemperatureC</td>
+                      <td>@forecast.TemperatureF</td>
+                      <td>@forecast.Summary</td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+    }
+}
+
+@code {
+    [Inject]
+    public IDispatcher Dispatcher { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Dispatcher.Dispatch(new FetchDataAction());
+        base.OnInitialized();
+    }
+}
