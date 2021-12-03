@@ -48,11 +48,11 @@ else
 
 @code {
     [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    public IDispatcher? Dispatcher { get; set; }
 
     protected override void OnInitialized()
     {
-        Dispatcher.Dispatch(new FetchDataAction());
+        Dispatcher?.Dispatch(new FetchDataAction());
         base.OnInitialized();
     }
 }

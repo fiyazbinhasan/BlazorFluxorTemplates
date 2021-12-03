@@ -19,7 +19,7 @@ namespace BlazorFluxorServer.Store.FetchDataUseCase
         {
             try
             {
-                var forecasts = await _weatherForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+                var forecasts = await _weatherForecastService.GetForecastAsync(DateTime.Now);
                 dispatcher.Dispatch(new FetchDataSuccessAction(forecasts));
             }
             catch (Exception ex)

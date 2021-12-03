@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluxor.Blazor.Web" Version="4.1.0" />
-    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="4.2.1" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.2.1" />
   </ItemGroup>
 
 </Project>

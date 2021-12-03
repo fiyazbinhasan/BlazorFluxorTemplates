@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace BlazorFluxorServer.Data
 {
     public class WeatherForecastService
@@ -11,7 +7,7 @@ namespace BlazorFluxorServer.Data
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
+        public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
             return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
