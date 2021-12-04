@@ -1,9 +1,6 @@
 ﻿using BlazorFluxorWasm.Data;
 using Fluxor;
-using System;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 
 namespace BlazorFluxorWasm.Store.FetchDataUseCase
 {
@@ -22,7 +19,7 @@ namespace BlazorFluxorWasm.Store.FetchDataUseCase
             try
             {
                 var forecasts = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-                dispatcher.Dispatch(new FetchDataSuccessAction(forecasts));
+                dispatcher.Dispatch(new FetchDataSuccessAction(forecasts ??= Array.Empty<WeatherForecast>()));
             }
             catch (Exception ex)
             {

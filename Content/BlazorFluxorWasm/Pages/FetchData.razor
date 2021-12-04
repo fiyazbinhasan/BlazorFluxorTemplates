@@ -5,6 +5,8 @@
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject IState<FetchDataState> _fetchDataState
 
+<PageTitle>Weather forecast</PageTitle>
+
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
@@ -47,11 +49,11 @@ else
 
 @code {
     [Inject]
-    public IDispatcher Dispatcher { get; set; }
+    public IDispatcher? Dispatcher { get; set; }
 
     protected override void OnInitialized()
     {
-        Dispatcher.Dispatch(new FetchDataAction());
+        Dispatcher?.Dispatch(new FetchDataAction());
         base.OnInitialized();
     }
 }
