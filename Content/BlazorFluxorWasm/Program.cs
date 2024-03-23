@@ -1,5 +1,6 @@
 using BlazorFluxorWasm;
 using Fluxor;
+using Fluxor.Blazor.Web.ReduxDevTools;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -12,7 +13,9 @@ builder.Services.AddFluxor(opt =>
 {
     opt.ScanAssemblies(typeof(Program).Assembly);
     opt.UseRouting();
+#if DEBUG
     opt.UseReduxDevTools();
+#endif
 });
 
 await builder.Build().RunAsync();

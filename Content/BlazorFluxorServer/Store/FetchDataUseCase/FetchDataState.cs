@@ -1,7 +1,21 @@
 ﻿using BlazorFluxorServer.Data;
-using System.Collections.Generic;
+using Fluxor;
 
 namespace BlazorFluxorServer.Store.FetchDataUseCase
 {
-    public record FetchDataState(bool IsLoading, IEnumerable<WeatherForecast>? Forecasts, string? Error);
+    [FeatureState]
+    public record FetchDataState
+    {
+        public bool IsLoading { get; init; }
+        public IEnumerable<WeatherForecast>? Forecasts { get; init; }
+        public string? Error { get; init; }
+
+        private FetchDataState() { }
+        public FetchDataState(bool isLoading, IEnumerable<WeatherForecast>? forecasts, string? error)
+        {
+            IsLoading = isLoading;
+            Forecasts = forecasts;
+            Error = error;
+        }
+    }
 }

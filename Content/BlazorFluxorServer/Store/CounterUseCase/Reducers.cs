@@ -4,8 +4,8 @@ namespace BlazorFluxorServer.Store.CounterUseCase
 {
     public class Reducers
     {
-        [ReducerMethod]
-        public static CounterState ReduceIncrementCounterAction(CounterState state, IncrementCounterAction action) =>
+        [ReducerMethod(typeof(IncrementCounterAction))]
+        public static CounterState ReduceIncrementCounterAction(CounterState state) =>
                state with { Count = state.Count + 1 };
     }
 }

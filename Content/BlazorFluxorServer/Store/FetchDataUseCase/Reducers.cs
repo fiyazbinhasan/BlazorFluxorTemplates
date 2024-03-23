@@ -4,16 +4,18 @@ namespace BlazorFluxorServer.Store.FetchDataUseCase
 {
     public class Reducers
     {
-        [ReducerMethod]
-        public static FetchDataState ReduceFetchDataAction(FetchDataState state, FetchDataAction action) =>
-            new(true, null, null);
+        [ReducerMethod(typeof(FetchDataAction))]
+        public static FetchDataState ReduceFetchDataAction(FetchDataState state) =>
+            state with { IsLoading = true, Forecasts = null, Error = null };
+
 
         [ReducerMethod]
         public static FetchDataState ReduceFetchDataSuccessAction(FetchDataState state, FetchDataSuccessAction action) =>
-            new(false, action.Forecasts, null);
+            state with { IsLoading = false, Forecasts = action.Forecasts, Error = null };
+
 
         [ReducerMethod]
         public static FetchDataState ReduceFetchDataErrorAction(FetchDataState state, FetchDataErrorAction action) =>
-            new(false, null, action.Error);
+            state with { IsLoading = false, Forecasts = null, Error = action.Error };
     }
 }

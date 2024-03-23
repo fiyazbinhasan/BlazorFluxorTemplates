@@ -1,7 +1,5 @@
 ﻿using BlazorFluxorServer.Data;
 using Fluxor;
-using System;
-using System.Threading.Tasks;
 
 namespace BlazorFluxorServer.Store.FetchDataUseCase
 {
@@ -14,8 +12,8 @@ namespace BlazorFluxorServer.Store.FetchDataUseCase
             _weatherForecastService = weatherForecastService;
         }
 
-        [EffectMethod]
-        public async Task HandleAsync(FetchDataAction action, IDispatcher dispatcher)
+        [EffectMethod(typeof(FetchDataAction))]
+        public async Task HandleAsync(IDispatcher dispatcher)
         {
             try
             {

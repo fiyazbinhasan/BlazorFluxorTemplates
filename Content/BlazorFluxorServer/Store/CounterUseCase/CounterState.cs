@@ -1,4 +1,17 @@
-﻿namespace BlazorFluxorServer.Store.CounterUseCase
+﻿using Fluxor;
+
+namespace BlazorFluxorServer.Store.CounterUseCase
 {
-    public record CounterState(int Count);
+    [FeatureState]
+    public record CounterState
+    {
+        public int Count { get; init; }
+
+        private CounterState() { }
+
+        public CounterState(int count)
+        {
+            Count = count;
+        }
+    }
 }

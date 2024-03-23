@@ -1,17 +1,22 @@
+using BlazorFluxorServer.Components;
 using BlazorFluxorServer.Data;
 using Fluxor;
+using Fluxor.Blazor.Web.ReduxDevTools;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddFluxor(opt =>
+
+builder.Services.AddFluxor(o =>
 {
-    opt.ScanAssemblies(typeof(Program).Assembly);
-    opt.UseRouting();
-    opt.UseReduxDevTools();
+    o.ScanAssemblies(typeof(Program).Assembly);
+    o.UseRouting();
+#if DEBUG
+    o.UseReduxDevTools();
+#endif
 });
 
 var app = builder.Build();
@@ -19,15 +24,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
 
-
 app.UseStaticFiles();
+app.UseAntiforgery();
 
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 app.Run();
+

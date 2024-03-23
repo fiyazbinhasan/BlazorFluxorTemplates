@@ -1,5 +1,4 @@
 ﻿using BlazorFluxorServer.Data;
-using System.Collections.Generic;
 
 namespace BlazorFluxorServer.Store.FetchDataUseCase
 {

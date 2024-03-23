@@ -13,13 +13,13 @@ namespace BlazorFluxorWasm.Store.FetchDataUseCase
             _httpClient = httpClient;
         }
 
-        [EffectMethod]
-        public async Task HandleAsync(FetchDataAction action, IDispatcher dispatcher)
+        [EffectMethod(typeof(FetchDataAction))]
+        public async Task HandleAsync(IDispatcher dispatcher)
         {
             try
             {
                 var forecasts = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-                dispatcher.Dispatch(new FetchDataSuccessAction(forecasts ??= Array.Empty<WeatherForecast>()));
+                dispatcher.Dispatch(new FetchDataSuccessAction(forecasts ??= []));
             }
             catch (Exception ex)
             {

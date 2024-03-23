@@ -1,0 +1,54 @@
+﻿@page "/weather"
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<FetchDataState> FetchDataState
+@inject IDispatcher Dispatcher
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (FetchDataState.Value.IsLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    if (FetchDataState.Value.Forecasts == null)
+    {
+        <p><em>@FetchDataState.Value.Error</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var forecast in FetchDataState.Value.Forecasts)
+                {
+                    <tr>
+                        <td>@forecast.Date.ToShortDateString()</td>
+                        <td>@forecast.TemperatureC</td>
+                        <td>@forecast.TemperatureF</td>
+                        <td>@forecast.Summary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Dispatcher.Dispatch(new FetchDataAction());
+    }
+}

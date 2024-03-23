@@ -1,14 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluxor.Blazor.Web" Version="4.2.1" />
-    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.2.1" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="6.0.0-Beta2" />
   </ItemGroup>
 
 </Project>
